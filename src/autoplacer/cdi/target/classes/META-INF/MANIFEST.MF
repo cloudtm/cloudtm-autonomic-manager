@@ -1,0 +1,63 @@
+Manifest-Version: 1.0
+Export-Package: org.infinispan.cdi.interceptor;uses:="org.infinispan,j
+ avax.cache.interceptor,javax.interceptor,javax.cache,javax.inject,org
+ .infinispan.cdi.util,javax.enterprise.util,javax.enterprise.inject,or
+ g.infinispan.manager";version="5.0.1.FINAL",org.infinispan.cdi.event.
+ cache;uses:="org.infinispan.notifications.cachelistener.event,javax.e
+ nterprise.event,org.infinispan.transaction.xa,org.infinispan,javax.en
+ terprise.util,org.infinispan.notifications,org.infinispan.notificatio
+ ns.cachelistener.annotation,org.infinispan.cdi.event";version="5.0.1.
+ FINAL",org.infinispan.cdi.event;uses:="javax.enterprise.inject.spi,ja
+ vax.enterprise.event,javax.inject";version="5.0.1.FINAL",org.infinisp
+ an.cdi.util;uses:="org.infinispan.cdi.interceptor,org.infinispan,java
+ x.cache.interceptor,javax.interceptor";version="5.0.1.FINAL",org.infi
+ nispan.cdi;uses:="org.infinispan,org.jboss.seam.solder.bean,org.infin
+ ispan.notifications,javax.enterprise.inject.spi,javax.enterprise.inje
+ ct,org.infinispan.cdi.event.cache,org.jboss.seam.solder.bean.generic,
+ javax.inject,org.infinispan.manager,javax.enterprise.context,org.infi
+ nispan.config,javax.enterprise.util,org.infinispan.cdi.event.cacheman
+ ager,org.infinispan.cdi.interceptor,org.jboss.seam.solder.reflection.
+ annotated,javax.enterprise.event,org.infinispan.cdi.interceptor.liter
+ al,javax.enterprise.context.spi,javax.cache.interceptor";version="5.0
+ .1.FINAL",org.infinispan.cdi.event.cachemanager;uses:="javax.enterpri
+ se.event,org.infinispan.notifications.cachemanagerlistener.event,org.
+ infinispan.notifications,org.infinispan.cdi.event,org.infinispan.mana
+ ger,org.infinispan.notifications.cachemanagerlistener.annotation,org.
+ infinispan.remoting.transport";version="5.0.1.FINAL",org.infinispan.c
+ di.interceptor.literal;uses:="javax.enterprise.util,javax.cache.inter
+ ceptor";version="5.0.1.FINAL"
+Implementation-Title: Infinispan CDI support
+Implementation-Version: 5.0.1.FINAL
+Built-By: pruivo
+Specification-Vendor: JBoss, a division of Red Hat
+Tool: Bnd-1.15.0
+Bundle-Name: Infinispan CDI support
+Created-By: Apache Maven Bundle Plugin
+Implementation-Vendor: JBoss, a division of Red Hat
+Bundle-Vendor: JBoss, a division of Red Hat
+Implementation-Vendor-Id: org.infinispan
+Build-Jdk: 1.6.0_22
+Bundle-Version: 5.0.1.FINAL
+Bnd-LastModified: 1327754351486
+Specification-Title: Infinispan CDI support
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.gnu.org/copyleft/lesser.html
+Bundle-Description: Infinispan CDI support module
+Specification-Version: 5.0.1.FINAL
+Import-Package: javax.cache,javax.cache.interceptor,javax.enterprise.c
+ ontext,javax.enterprise.context.spi,javax.enterprise.event,javax.ente
+ rprise.inject,javax.enterprise.inject.spi,javax.enterprise.util,javax
+ .inject,javax.interceptor,org.infinispan;version="[5.0,6)",org.infini
+ span.config;version="[5.0,6)",org.infinispan.manager;version="[5.0,6)
+ ",org.infinispan.notifications;version="[5.0,6)",org.infinispan.notif
+ ications.cachelistener.annotation;version="[5.0,6)",org.infinispan.no
+ tifications.cachelistener.event;version="[5.0,6)",org.infinispan.noti
+ fications.cachemanagerlistener.annotation;version="[5.0,6)",org.infin
+ ispan.notifications.cachemanagerlistener.event;version="[5.0,6)",org.
+ infinispan.remoting.transport;version="[5.0,6)",org.infinispan.transa
+ ction.xa;version="[5.0,6)",org.jboss.seam.solder.bean,org.jboss.seam.
+ solder.bean.generic,org.jboss.seam.solder.reflection.annotated
+Bundle-DocURL: http://www.infinispan.org/
+Bundle-SymbolicName: org.infinispan.cdi
+Main-Class: org.infinispan.Version
+

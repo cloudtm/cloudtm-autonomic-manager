@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan xmlns="urn:infinispan:config:5.2">
+    <global>
+        <globalJmxStatistics
+                enabled="true"
+                jmxDomain="org.infinispan"/>
+        <transport
+                clusterName="cloudtm-autoplacer-cluster">
+            <properties>
+                <property
+                        name="configurationFile"
+                        value="jgroups/jgroups.xml" />
+            </properties>
+        </transport>
+    </global>
+    <default>
+        <locking
+                isolationLevel="REPEATABLE_READ"
+                concurrencyLevel="32"
+                writeSkewCheck="false"
+                useLockStriping="false"
+                lockAcquisitionTimeout="10000"/>
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+                useEagerLocking="false"
+                transactionMode="TRANSACTIONAL"
+                syncRollbackPhase="false"
+                cacheStopTimeout="30000"
+                useSynchronization="false"
+                syncCommitPhase="true"
+                lockingMode="OPTIMISTIC"
+                eagerLockSingleNode="false"
+                use1PcForAutoCommitTransactions="false"
+                autoCommit="true"
+                />
+        <jmxStatistics
+                enabled="true"/>
+        <deadlockDetection
+                enabled="false"/>
+        <clustering mode="d">
+            <sync
+                    replTimeout="15000" />
+            <stateTransfer
+                    fetchInMemoryState="true"
+                    chunkSize="100"
+                    timeout="240000"/>
+            <hash
+                    numOwners="1"
+                    numVirtualNodes="100"
+                    />
+        </clustering>
+        <customInterceptors>
+            <interceptor
+                    after="org.infinispan.interceptors.InvocationContextInterceptor"
+                    class="org.infinispan.distribution.wrappers.DistCustomStatsInterceptor"/>
+            <interceptor
+                    before="org.infinispan.interceptors.NotificationInterceptor"
+                    class="org.infinispan.stats.topK.DistributedStreamLibInterceptor"/>
+        </customInterceptors>
+        <versioning
+                enabled="false"
+                versioningScheme="SIMPLE" />
+        <dataPlacement
+                enabled="true"
+                maxNumberOfKeysToRequest="1000"
+                objectLookupFactory="org.infinispan.dataplacement.c50.C50MLObjectLookupFactory">
+            <properties>
+                <property
+                        name="keyFeatureManager"
+                        value="org.radargun.cachewrappers.RadargunKeyFeatureManager"
+                        />
+                <property
+                        name="location"
+                        value="/tmp/ml"
+                        />
+                <property
+                        name="bfFalsePositiveProb"
+                        value="0.001"
+                        />
+            </properties>
+        </dataPlacement>
+    </default>
+    <namedCache
+            name="x" />
+</infinispan>
