@@ -1,0 +1,80 @@
+<stats-collector>
+<component name="LockManager">
+                <stat displayName="FlushCpuTime" attributeName="FlushCpuTime"/>
+                <stat displayName="FlushWCTime" attributeName="FlushWCTime"/>
+                <stat displayName="CONTESE_LOCALvsLOCAL" attributeName="LocalLocalContentions"/>
+                <stat displayName="CONTESE_LOCALvsREMOTE" attributeName="LocalRemoteContentions"/>
+                <stat displayName="CONTESE_REMOTEvsLOCAL" attributeName="RemoteLocalContentions"/>
+                <stat displayName="CONTESE_REMOTEvsREMOTE" attributeName="RemoteRemoteContentions"/>
+                <stat displayName="PAOLO_REQUESTED_LOCKS" attributeName="PaoloRequestedLocks"/>
+                <stat displayName="PAOLO_TAKEN_LOCKS" attributeName="PaoloTakenLocks"/>
+                <stat displayName="PAOLO_REQUESTED_HOLD_TIME" attributeName="PaoloRequestedHoldTime"/>
+                <stat displayName="PAOLO_TAKEN_HOLD_TIME" attributeName="PaoloTakenHoldTime"/>
+                <stat displayName="PAOLO_LOCAL_HOLD_TIME" attributeName="PaoloLocalTakenHoldTime"/>
+                <stat displayName="PAOLO_REMOTE_HOLD_TIME" attributeName="PaoloRemoteTakenHoldTime"/>
+                <stat displayName="PAOLO_LOCAL_TAKEN_LOCKS" attributeName="PaoloLocalTakenLocks"/>
+                <stat displayName="PAOLO_REMOTE_TAKEN_LOCKS" attributeName="PaoloRemoteTakenLocks"/>
+                <stat displayName="LOCAL_HOLD_TIME" attributeName="LocalHoldTime"/>
+                <stat displayName="REMOTE_HOLD_TIME" attributeName="RemoteHoldTime"/>
+                <stat displayName="SUX_LOCAL_HOLD_TIME" attributeName="SuxLocalHoldTime"/>
+                <stat displayName="SUX_REMOTE_HOLD_TIME" attributeName="SuxRemoteHoldTime"/>
+        </component>
+        <component name="RpcManager">
+                <stat displayName="ReplayCpuTime" attributeName="ReplayCpuTime"/>
+                <stat displayName="ReplayWCTime" attributeName="ReplayWCTime"/>
+                <stat displayName="PrepareMarshalCpuTime" attributeName="PrepareMarshallingCpuTime"/>
+                <stat displayName="PrepareMarshalWCTime" attributeName="PrepareMarshallingWallClockTime"/>
+                <stat displayName="OOBPrepareCpuTime" attributeName="OOBPrepareCpuTime"/>
+                <stat displayName="OOBCommitCpuTime" attributeName="OOBCommitCpuTime"/>
+                <stat displayName="OOBRollbackCpuTime" attributeName="OOBRollbackCpuTime"/>
+                <stat displayName="RttCpuTime" attributeName="PrepareBroadcastCpuTime"/>
+                <stat displayName="CommitCommandBroadcastCpuTime" attributeName="CommitBroadcastCpuTime"/>
+                <stat displayName="CommitCommandBroadcastWallClockTime" attributeName="CommitBroadcastWallClockTime"/>
+                <stat displayName="COMMIT_COMMAND_BYTES" attributeName="CommitCommandBytes"/>
+                <stat displayName="PREPARE_COMMAND_BYTES" attributeName="PrepareCommandBytes"/>
+                <stat displayName="ECCEZIONI_REMOTE" attributeName="RemoteExceptions"/>
+                <stat displayName="AVG_PREPARE" attributeName="AvgPrepareTime"/>
+		<stat displayName="RTT" attributeName="RTT"/>       
+ </component>
+        <component name="Transactions">
+                <stat displayName="CommitTimeRo" attributeName="CommitTimeRo"/>
+                <stat displayName="ReadOnlyCommitCpuTime" attributeName="ReadOnlyCommitCpuTime"/>
+                <stat displayName="avgLocalWrite" attributeName="AvgLocalWriteTxExecutionTime"/>
+                <stat displayName="suxLocalWrite" attributeName="AvgLocalSuxWriteTxExecutionTime"/>
+                <stat displayName="NUM_PUT" attributeName="NumPuts"/>
+                <stat displayName="COMMIT_TIME" attributeName="CommitTime"/>
+                <stat displayName="SUX_TX_PUTS" attributeName="SuxNumPuts"/>
+                <stat displayName="CPU_EXEC_NO_CONT" attributeName="CpuExecNoCont"/>
+                <stat displayName="CPU_RO" attributeName="CpuRoExec"/>
+                <stat displayName="CPU_COMMIT" attributeName="CommitCpuTime"/>
+                <stat displayName="AVG_LOCAL_EXEC_NO_CONFLICT" attributeName="NewLocalExecNoCont"/>                
+        </component>
+	<component name="TopStats">
+            <stat displayName="LocalReadOnlyTxTotalWCTime" attributeName="LocalReadOnlyTxTotalWCTime"/>
+            <stat displayName="LocalReadOnlyTxTotalCpuTime" attributeName="LocalReadOnlyTxTotalCpuTime"/>
+            <stat displayName="LocalReadOnlyTxCommitResponseTime" attributeName="LocalReadOnlyTxCommitResponseTime"/>
+            <stat displayName="LocalReadOnlyTxCommitServiceTime" attributeName="LocalReadOnlyTxCommitServiceTime"/>
+            <stat displayName="LocalReadOnlyTxPrepareServiceTime" attributeName="LocalReadOnlyTxPrepareServiceTime"/>
+            <stat displayName="LocalReadOnlyTxPrepareResponseTime" attributeName="LocalReadOnlyTxPrepareResponseTime"/>
+            <stat displayName="LocalReadOnlyTxLocalResponseTime" attributeName="LocalReadOnlyTxLocalResponseTime"/>
+            <stat displayName="LocalReadOnlyTxLocalServiceTime" attributeName="LocalReadOnlyTxLocalServiceTime"/>
+            <stat displayName="LocalUpdateTxTotalWCTime" attributeName="LocalUpdateTxTotalWCTime"/>
+            <stat displayName="LocalUpdateTxTotalCpuTime" attributeName="LocalUpdateTxTotalCpuTime"/>
+            <stat displayName="LocalUpdateTxLocalRollbackResponseTime" attributeName="LocalUpdateTxLocalRollbackResponseTime"/>
+            <stat displayName="LocalUpdateTxLocalRollbackServiceTime" attributeName="LocalUpdateTxLocalRollbackServiceTime"/>
+            <stat displayName="LocalUpdateTxRemoteRollbackResponseTime" attributeName="LocalUpdateTxRemoteRollbackResponseTime"/>
+            <stat displayName="LocalUpdateTxRemoteRollbackServiceTime" attributeName="LocalUpdateTxRemoteRollbackServiceTime"/>
+            <stat displayName="LocalUpdateTxCommitResponseTime" attributeName="LocalUpdateTxCommitResponseTime"/>
+            <stat displayName="LocalUpdateTxCommitServiceTime" attributeName="LocalUpdateTxCommitServiceTime"/>
+            <stat displayName="LocalUpdateTxPrepareServiceTime" attributeName="LocalUpdateTxPrepareServiceTime"/>
+            <stat displayName="LocalUpdateTxPrepareResponseTime" attributeName="LocalUpdateTxPrepareResponseTime"/>
+            <stat displayName="LocalUpdateTxLocalResponseTime" attributeName="LocalUpdateTxLocalResponseTime"/>
+            <stat displayName="LocalUpdateTxLocalServiceTime" attributeName="LocalUpdateTxLocalServiceTime"/>
+            <stat displayName="RemoteUpdateTxRollbackResponseTime" attributeName="RemoteUpdateTxRollbackResponseTime"/>
+            <stat displayName="RemoteUpdateTxRollbackServiceTime" attributeName="RemoteUpdateTxRollbackServiceTime"/>
+            <stat displayName="RemoteUpdateTxCommitResponseTime" attributeName="RemoteUpdateTxCommitResponseTime"/>
+            <stat displayName="RemoteUpdateTxCommitServiceTime" attributeName="RemoteUpdateTxCommitServiceTime"/>
+            <stat displayName="RemoteUpdateTxPrepareServiceTime" attributeName="RemoteUpdateTxPrepareServiceTime"/>
+            <stat displayName="RemoteUpdateTxPrepareResponseTime" attributeName="RemoteUpdateTxPrepareResponseTime"/>
+	</component>
+</stats-collector>

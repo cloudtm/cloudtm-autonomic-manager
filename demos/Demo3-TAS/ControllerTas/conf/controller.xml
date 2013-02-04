@@ -1,0 +1,16 @@
+<TasControllerConfiguration>
+<ScaleConfig
+    minNumNodes="2"
+    maxNumNodes="10"
+    minNumThreads="2"
+    maxNumThreads="10"
+    initNumNodes="2"
+    initNumThreads="2"/>
+<PlatformConfig
+    numCores="8"/>
+<GnuplotConfig
+    exec="/usr/bin/gnuplot"/>
+<DemoTransitoryConfig
+   transtitoryTime="90"
+   maxPutsForRealXacts="40"/>
+</TasControllerConfiguration>

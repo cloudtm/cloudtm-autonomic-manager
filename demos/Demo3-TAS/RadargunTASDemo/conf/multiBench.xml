@@ -1,0 +1,73 @@
+<bench-config>
+    <master
+            bindAddress="${127.0.0.1:master.address}"
+            port="${2103:master.port}"/>
+    <benchmark
+            initSize="1"
+            maxSize="3"
+            increment="1">
+        <!--DestroyWrapper
+                runOnAllSlaves="true"/-->
+        <StartCluster
+                staggerSlaveStartup="true"
+                delayAfterFirstSlaveStarts="5000"
+                delayBetweenStartingSlaves="1000"/>
+        <ClusterValidation
+                passiveReplication="false"
+                partialReplication="false"/>
+        <TpccPopulation
+                preloadedFromDB="false"
+                numWarehouses="1"
+                cLastMask="0"
+                olIdMask="0"
+                cIdMask="0"
+                threadParallelLoad="true"
+                batchLevel="100"
+                numLoaderThreads="2"
+		oneWarmup="true"/>
+        <ResetStats/>
+        <CacheSize
+                statName="CACHE_SIZE_BEFORE_BENCH"/>
+        <TpccBenchmark
+                statsSamplingInterval="5000"
+                numOfThreads="2"
+                perThreadSimulTime="60"
+                arrivalRate="0"
+                accessSameWarehouse="false"
+                paymentWeight="5"
+                orderStatusWeight="5"
+		trackNewKeys="true"/>
+        <CacheSize
+                statName="CACHE_SIZE_AFTER_BENCH"/>
+<CacheSize statName="CACHE_SIZE_BEFORE_ERASE"/>
+        <EraseNewKeys batchSize="50"/>
+        <CacheSize statName="CACHE_SIZE_AFTER_ERASE"/>       
+ <CsvReportGeneration/>
+	<ResetStats/>
+	<CacheSize
+                statName="CACHE_SIZE_BEFORE_BENCH"/>
+	<TpccBenchmark
+		statsSamplingInterval="5000"
+                numOfThreads="2"
+                perThreadSimulTime="30"
+                arrivalRate="0"
+                accessSameWarehouse="false"
+                paymentWeight="5"
+                orderStatusWeight="5"
+		trackNewKeys="true"/>
+<CacheSize
+                statName="CACHE_SIZE_AFTER_BENCH"/>
+<CacheSize statName="CACHE_SIZE_BEFORE_ERASE"/>
+        <EraseNewKeys batchSize="50"/>
+        <CacheSize statName="CACHE_SIZE_AFTER_ERASE"/>
+	<CsvReportGeneration/> 
+ </benchmark>
+    <products>
+        <infinispan4>
+            <config name="provaPC.xml"/>
+        </infinispan4>
+    </products>
+    <reports>
+        <report name="Reports"/>
+    </reports>
+</bench-config>

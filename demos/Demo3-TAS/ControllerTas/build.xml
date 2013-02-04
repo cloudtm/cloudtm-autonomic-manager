@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="makejar" name="ControllerTas">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="ControllerTas.classpath">
+        <pathelement location="out/production/ControllerTas"/>
+        <pathelement location="lib/commons-logging-1.1.1.jar"/>
+        <pathelement location="lib/ejml-0.21.jar"/>
+        <pathelement location="lib/flanagan.jar"/>
+        <pathelement location="lib/Jama-1.0.2.jar"/>
+        <pathelement location="lib/log4j-1.2.14.jar"/>
+        <pathelement location="lib/TAS2.jar"/>
+        <pathelement location="lib/WPMConnector.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="out/production/ControllerTas"/>
+        <copy includeemptydirs="false" todir="out/production/ControllerTas">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="out/production/ControllerTas"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="out/production/ControllerTas" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="ControllerTas.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name ="makejar" depends="build-project">
+    	<jar destfile="ControllerTas.jar">
+    		<fileset dir="out/production/ControllerTas"/>
+  		</jar>
+  	</target>
+</project>

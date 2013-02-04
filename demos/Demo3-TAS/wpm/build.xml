@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="jar" name="Workwload_Monitor">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../Software/eclipse"/>
+    <property name="LatticeCloudTM.location" value="../LatticeCloudTM"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="LatticeCloudTM.classpath">
+        <pathelement location="${LatticeCloudTM.location}/bin"/>
+        <pathelement location="${LatticeCloudTM.location}/bogebjerg-xmlstore-1.1.jar"/>
+        <pathelement location="${LatticeCloudTM.location}/dht.jar"/>
+        <pathelement location="${LatticeCloudTM.location}/libvirt-0.2.1.jar"/>
+    </path>
+    <path id="Workwload_Monitor.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/sigar.jar"/>
+        <pathelement location="lib/infinispan-core.jar"/>
+        <pathelement location="lib/jboss-logging-3.0.0.Beta5.jar"/>
+        <pathelement location="lib/jboss-marshalling-1.3.0.CR9.jar"/>
+        <pathelement location="lib/jboss-marshalling-river-1.3.0.CR9.jar"/>
+        <pathelement location="lib/jboss-transaction-api-1.0.1.GA.jar"/>
+        <pathelement location="lib/jcip-annotations-1.0.jar"/>
+        <pathelement location="lib/jgroups-2.12.0.Final.jar"/>
+        <pathelement location="lib/log4j-1.2.16.jar"/>
+        <pathelement location="lib/rhq-pluginAnnotations-3.0.1.jar"/>
+        <path refid="LatticeCloudTM.classpath"/>
+    </path>
+    <path id="run.HwResourceMain.classpath">
+        <pathelement location="config"/>
+        <path refid="Workwload_Monitor.classpath"/>
+    </path>
+    <path id="run.LogService.classpath">
+        <path refid="Workwload_Monitor.classpath"/>
+        <pathelement location="config"/>
+    </path>
+    <path id="run.ResourceConsumer.classpath">
+        <pathelement location="config"/>
+        <pathelement location="log"/>
+        <path refid="Workwload_Monitor.classpath"/>
+    </path>
+    <path id="run.WPM.classpath">
+        <path refid="Workwload_Monitor.classpath"/>
+        <pathelement location="config"/>
+        <pathelement location="log"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+	<delete file="wpm.jar"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="${LatticeCloudTM.location}/build.xml" dir="${LatticeCloudTM.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="${LatticeCloudTM.location}/build.xml" dir="${LatticeCloudTM.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Workwload_Monitor.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="HwResourceMain">
+        <java classname="eu.cloudtm.wpm.producer.HwResourceMain" failonerror="true" fork="yes">
+            <classpath refid="run.HwResourceMain.classpath"/>
+        </java>
+    </target>
+    <target name="LogService">
+        <java classname="eu.cloudtm.wpm.logService.LogService" failonerror="true" fork="yes">
+            <jvmarg line="-Djavax.net.ssl.keyStore=config/serverkeys&#10;-Djavax.net.ssl.keyStorePassword=cloudtm&#10;-Djavax.net.ssl.trustStore=config/serverkeys&#10;-Djavax.net.ssl.trustStorePassword=cloudtm"/>
+            <classpath refid="run.LogService.classpath"/>
+        </java>
+    </target>
+    <target name="ResourceConsumer">
+        <java classname="eu.cloudtm.wpm.consumer.ResourceConsumer" failonerror="true" fork="yes">
+            <jvmarg line="-Djavax.net.ssl.trustStore=config/serverkeys&#10;-Djavax.net.ssl.trustStorePassword=cloudtm&#10;-Djavax.net.ssl.keyStore=config/serverkeys&#10;-Djavax.net.ssl.keyStorePassword=cloudtm"/>
+            <classpath refid="run.ResourceConsumer.classpath"/>
+        </java>
+    </target>
+    <target name="WPM">
+        <java classname="eu.cloudtm.wpm.main.Main" failonerror="true" fork="yes">
+            <jvmarg line="-Djavax.net.ssl.keyStore=config/serverkeys&#10;-Djavax.net.ssl.keyStorePassword=cloudtm&#10;-Djavax.net.ssl.trustStore=config/serverkeys&#10;-Djavax.net.ssl.trustStorePassword=cloudtm"/>
+            <arg line="producer"/>
+            <classpath refid="run.WPM.classpath"/>
+        </java>
+    </target>
+	
+	<target name="jar" depends="build">
+	
+	<jar destfile="wpm.jar">
+	    <fileset dir="bin"/>
+	    <fileset dir="${LatticeCloudTM.location}/bin"/>
+		<!--
+		<manifest>
+		      <attribute name="Main-Class"
+		            value="eu.cloudtm.wpm.main.Main"/>
+			  <attribute name="Class-Path" value=". lib/*"/>
+		 </manifest>-->
+	  </jar>
+		
+	</target>
+	
+</project>

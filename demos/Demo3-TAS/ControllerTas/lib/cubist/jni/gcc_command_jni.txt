@@ -1,0 +1,1 @@
+gcc -fPIC -I /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Headers -I /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Headers -shared -O3 -o libcubistJNI.dylib cubistJNI.c -lm -lpthread

@@ -1,0 +1,41 @@
+To run CubistSam.exe from MSDOS:
+
+  *  Make sure that you have run Cubist on your application to
+     construct the kind of model that you want to use.
+
+  *  Put CubistSam.exe in a directory mentioned in your PATH setting
+     (or, alternatively, put a link to CubistSam.exe in the directory
+     containing your application's data files).
+
+  *  Change to the directory containing your application's data files.
+
+  *  If the application filestem is `app', say, put the cases to be
+     run through the model in the file app.cases in the same format
+     as the app.data file.  If a case's target value is unknown, put
+     `?' for the target value.
+
+  *  The MSDOS command is
+
+        CubistSam -f app [-p] [-e] [-i] [> output file]
+
+     The -p option prints a copy of the Cubist model.
+
+     The -e option shows estimated error bounds for each case.
+
+     The -i option shows the nearest neighbors for each case.  (This
+     option is ignored unless the Cubist model uses both rules and
+     instances.)
+
+     For example, to run CubistSam for application FOO and save the
+     output in file DONE, the command is
+
+        CubistSam -f FOO > DONE
+
+  *  For each case in the .cases file the output shows the target
+     value stated in the file and the value predicted by the model.
+
+     If the -e option is used, estimated 95% error bounds in the
+     form "+- error" are shown for the case.
+
+     Finally, if the -i option is used, the case's nearest neighbors
+     and their distances from the case are given.

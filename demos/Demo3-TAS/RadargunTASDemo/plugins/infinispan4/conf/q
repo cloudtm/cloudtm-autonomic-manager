@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="urn:infinispan:config:5.0 http://www.infinispan.org/schemas/infinispan-config-5.0.xsd"
+      xmlns="urn:infinispan:config:5.0">
+   <global>
+        <globalJmxStatistics enabled="true" oobSampling="true" replayAndFlushTime="false" marshallingTime="false"/>
+        <transport clusterName="x">
+         <properties>
+            <property name="configurationFile" value="jgroups/jgroups-tcp.xml"/>
+         </properties>
+      </transport>
+   </global>
+
+   <default>
+        <jmxStatistics enabled="true"/>
+    <customStats cpuPrimaryCommitPrepare="true" cpuTime="true" replayAndFlushTime="false" topStats="true" propagateLocalRollback="false"/>
+   <locking isolationLevel="REPEATABLE_READ" lockAcquisitionTimeout="0" writeSkewCheck="false" concurrencyLevel="500" useLockStriping="false"/>
+      <transaction transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"/>
+      <clustering mode="r">
+         <sync replTimeout="60000"/>
+        <replicasPolicy mode ="PC"/>
+<stateRetrieval
+                    fetchInMemoryState="true"
+                    timeout="240000"/>
+</clustering>  
+ </default>
+<namedCache name="x"/>
+</infinispan>

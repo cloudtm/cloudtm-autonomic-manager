@@ -1,0 +1,60 @@
+<bench-config>
+    <master
+            bindAddress="${127.0.0.1:master.address}"
+            port="${2103:master.port}"/>
+    <benchmark
+            initSize="2"
+            maxSize="2"
+            increment="2">
+            
+        <!--DestroyWrapper
+                runOnAllSlaves="true"/-->
+        <StartCluster
+                staggerSlaveStartup="false"
+                delayAfterFirstSlaveStarts="5000"
+                delayBetweenStartingSlaves="1000"/>
+        <ClusterValidation
+                passiveReplication="false"
+                partialReplication="false"/>
+        <TpccPopulation
+                preloadedFromDB="false"
+                numWarehouses="15"
+                cLastMask="0"
+                olIdMask="0"
+                cIdMask="0"
+                threadParallelLoad="true"
+                batchLevel="50"
+                numLoaderThreads="3"
+                oneWarmup="true"/>        
+       <GarbageCollection/>
+        <!--GC only here because eraseNewKeys already includes a gc phase--> 
+        <ResetStats/>
+        <CacheSize
+                statName="CACHE_SIZE_BEFORE_BENCH"/>
+        <TpccBenchmark
+                statsSamplingInterval="30000"
+                numOfThreads="2"
+                perThreadSimulTime="1800"
+                arrivalRate="0"
+                accessSameWarehouse="false"
+                paymentWeight="43"
+                orderStatusWeight="53"
+		retryOnAbort="true"
+		backOffTime="0"
+		perThreadTrackNewKeys="true"/>
+	<TpccCsvReportGeneration/>  
+      <EraseNewKeys batchSize="50"/>
+<ResetStats/>
+
+ 
+<TpccCsvReportGeneration/>
+ </benchmark>
+    <products>
+        <infinispan4>
+            <config name="provaPC.xml"/>
+        </infinispan4>
+    </products>
+    <reports>
+        <report enabled="false" name="Reports"/>
+    </reports>
+</bench-config>

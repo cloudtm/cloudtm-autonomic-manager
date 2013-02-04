@@ -1,0 +1,16 @@
+TasRtt
+
+NumKeys:continuous
+NumWarehouses:continuous
+NumNodes:continuous
+NumThreads:continuous
+TxNetThroughput:continuous
+Throughput:continuous
+MexSize:continuous
+TasRtt:continuous
+Cpu:continuous
+Memory:continuous
+NodiSquared:=NumNodes*NumNodes.
+Parallelism:=NumNodes*NumThreads.
+
+attributes excluded:Throughput,NumKeys,NumWarehouses,Cpu

@@ -1,0 +1,1 @@
+java -cp . -Djava.net.preferIPv4Stack=true -Dbind.address=127.0.0.1 -jar wpm_clear.jar

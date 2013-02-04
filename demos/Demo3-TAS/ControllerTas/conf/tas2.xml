@@ -1,0 +1,37 @@
+<Tas2Configuration>
+    <CubistConfig
+            pathToCubist="lib/cubist/cubist"
+            pathToOracle="lib/cubist/oracle"
+            pathToQueryData="conf/"
+            pathToData="conf/pedroCub.csv"
+            targetFeature="tasRtt"
+            convergenceThreshold="5e-2"
+            solvingMethod="BINARY_SEARCH">
+        <IterativeRttGeneratorConfig minRtt="15e5" maxRtt="10e6" stepRtt="2e5"/>
+        <BinaryRttGeneratorConfig minRtt="15e5" maxRtt="10e6"/>
+        <RecursiveRttGeneratorConfig minRtt="15e5" maxIterations="50"/>
+        <MinimalErrorCubistSolverConfig convex="false"/>           
+    </CubistConfig>
+    <PhysicalConfig
+	numCores="8"/>
+<SolverFactoryConfig
+        solverType="CUBIST_TAS"/>
+    <QueueFactoryConfig/>    
+    <ClosedSolverConfig
+            debug="true"
+            cutCpuU="1"
+	        validateUnstable="true"
+            convergenceThreshold="1e-2"
+            recursionIteration="50"
+            solvingMethod="ITERATIVE">
+            <IterativeLambdaGeneratorConfig initLambda="1" maxLambda="10000" stepLambda="100"/>
+            <BinaryLambdaGeneratorConfig minLambda="1" maxLambda="10000"/>
+            <RecursiveLambdaGeneratorConfig minLambda="1" maxIterations="50"/>
+            </ClosedSolverConfig>
+    <OpenSolverConfig
+            debug="true"
+            convergenceThreshold="1e-2"/>            
+    <ProbabilityFactoryConfig
+            binarySearch="false"
+            initialConflict="false"/>
+</Tas2Configuration>

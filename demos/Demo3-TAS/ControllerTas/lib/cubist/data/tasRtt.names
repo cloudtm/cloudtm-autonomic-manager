@@ -1,0 +1,14 @@
+TasRtt
+
+NumKeys:continuous
+NumWarehouses:continuous
+NumNodes:continuous
+NumThreads:continuous
+TxNetThroughput:continuous
+Throughput:continuous
+MexSize:continuous
+TasRtt:continuous
+Cpu:continuous
+Memory:continuous
+
+attributes excluded:Throughput,NumKeys,NumWarehouses
