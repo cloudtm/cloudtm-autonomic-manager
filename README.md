@@ -1,4 +1,4 @@
-<img src="images/logo.png" height="315" width="495"> 
+<a href="http://www.cloudtm.eu"><img src="images/logo.png" height="315" width="495"> </a>
 
 #Cloud-TM Autonomic Manager
 This GitHub repository contains the source code, binaries and example applications associated with the Cloud-TM Autonomic Manager.
