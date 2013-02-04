@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ /*
+  ~  * INESC-ID, Instituto de Engenharia de Sistemas e Computadores Investigação e Desevolvimento em Lisboa
+  ~  * Copyright 2013 INESC-ID and/or its affiliates and other
+  ~  * contributors as indicated by the @author tags. All rights reserved.
+  ~  * See the copyright.txt in the distribution for a full listing of
+  ~  * individual contributors.
+  ~  *
+  ~  * This is free software; you can redistribute it and/or modify it
+  ~  * under the terms of the GNU Lesser General Public License as
+  ~  * published by the Free Software Foundation; either version 3.0 of
+  ~  * the License, or (at your option) any later version.
+  ~  *
+  ~  * This software is distributed in the hope that it will be useful,
+  ~  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~  * Lesser General Public License for more details.
+  ~  *
+  ~  * You should have received a copy of the GNU Lesser General Public
+  ~  * License along with this software; if not, write to the Free
+  ~  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  ~  */
+  -->
+
+<project name="module_untitled" default="compile.module.untitled">
+    <dirname property="module.untitled.basedir" file="${ant.file.module_untitled}"/>
+
+    <property name="module.jdk.home.untitled" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.untitled" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.untitled" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.untitled" value="${compiler.args}"/>
+
+    <property name="untitled.output.dir"
+              value="${module.untitled.basedir}/../../../TASController/out/production/untitled"/>
+    <property name="untitled.testoutput.dir"
+              value="${module.untitled.basedir}/../../../TASController/out/test/untitled"/>
+
+    <path id="untitled.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="untitled.module.production.classpath">
+        <path refid="${module.jdk.classpath.untitled}"/>
+    </path>
+
+    <path id="untitled.runtime.production.module.classpath">
+        <pathelement location="${untitled.output.dir}"/>
+    </path>
+
+    <path id="untitled.module.classpath">
+        <path refid="${module.jdk.classpath.untitled}"/>
+        <pathelement location="${untitled.output.dir}"/>
+    </path>
+
+    <path id="untitled.runtime.module.classpath">
+        <pathelement location="${untitled.testoutput.dir}"/>
+        <pathelement location="${untitled.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.untitled">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.untitled">
+        <patternset refid="excluded.from.module.untitled"/>
+    </patternset>
+
+
+    <target name="compile.module.untitled" depends="compile.module.untitled.production,compile.module.untitled.tests"
+            description="Compile module untitled"/>
+
+    <target name="compile.module.untitled.production" depends="register.custom.compilers"
+            description="Compile module untitled; production classes"/>
+
+    <target name="compile.module.untitled.tests" depends="register.custom.compilers,compile.module.untitled.production"
+            description="compile module untitled; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.untitled" description="cleanup module">
+        <delete dir="${untitled.output.dir}"/>
+        <delete dir="${untitled.testoutput.dir}"/>
+    </target>
+</project>
