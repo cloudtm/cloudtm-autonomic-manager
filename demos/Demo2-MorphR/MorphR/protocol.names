@@ -1,0 +1,38 @@
+bestprotocol.
+
+test: ignore.
+prot:	2PC, TO, PB.
+pWT:	continuous.
+aRP:     continuous.
+aRO:continuous.
+CPUP: continuous.
+CPUO:	continuous.
+MP:  continuous.
+MO:   continuous. 
+ROTD:	continuous.
+CDP:     continuous.
+CDO:      continuous.
+WTLE:     continuous.
+WTDP:    continuous.
+WTDO:     continuous.
+TARP:      continuous.
+TARO:	continuous.
+LWT:	continuous.
+LHT:        continuous.
+RPROT:	continuous.
+RPWT: continuous.
+WPT:	continuous.
+PRP:	continuous.
+PRO:	continuous.
+PCS:  continuous.
+TP:	continuous.
+TO:	continuous.
+nt:	continuous.
+bestprotocol:	2PC, TO, PB.
+workloadID: ignore
+
+
+
+
+ attributes included: WTLE,prot,ROTD,TARO,CPUP,CPUO,MP,MO,CDP,CDO,WTDP,WTDO,RPWT,aRP,aRO,LHT 
+

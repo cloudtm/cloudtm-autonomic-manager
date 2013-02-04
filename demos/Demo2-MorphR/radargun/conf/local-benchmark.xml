@@ -1,0 +1,36 @@
+<local-bench-config>
+
+    <benchmark>
+        <Warmup
+                operationCount="1000"/>
+        <PutGet
+                perThreadSimulTime="30000000000"
+                opsCountStatusLog="5000"
+                numberOfKeys="1000"
+                sizeOfValue="1000"
+                numOfThreads="8"
+                writeOperationPercentage="50"
+                lowerBoundOp="10"
+                upperBoundOp="10"
+                coordinatorParticipation="true"
+                readOnlyTransactionsEnabled="false"
+                noContentionEnabled="false"/>
+    </benchmark>
+
+    <products>
+        <infinispan4>
+            <config
+                    name="local/read-committed.xml"/>
+        </infinispan4>
+    </products>
+
+
+    <reports>
+        <report name="read-committed">
+            <item
+                    product="infinispan4"
+                    config="local/read-committed.xml"/>
+        </report>
+    </reports>
+</local-bench-config>
+      

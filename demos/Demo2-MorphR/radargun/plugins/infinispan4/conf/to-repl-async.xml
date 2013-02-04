@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:infinispan:config:5.1 http://www.infinispan.org/schemas/infinispan-config-5.1.xsd"
+        xmlns="urn:infinispan:config:5.1">
+    <global>
+        <globalJmxStatistics
+                enabled="true"
+                jmxDomain="org.infinispan"/>
+
+        <transport
+                clusterName="infinispan-cluster">
+            <properties>
+                <property
+                        name="configurationFile"
+                        value="jgroups/jgroups-udp-seq.xml" />
+            </properties>
+        </transport>
+    </global>
+
+    <default>
+
+        <locking
+                isolationLevel="READ_COMMITTED"
+                concurrencyLevel="500"
+                writeSkewCheck="false"
+                useLockStriping="false"/>
+
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+                transactionProtocol="TOTAL_ORDER">
+            <totalOrderThreading
+                    corePoolSize="8"
+                    maximumPoolSize="64"
+                    keepAliveTime="10000"/>
+        </transaction>
+
+        <jmxStatistics
+                enabled="true"/>
+
+        <clustering mode="r">
+            <async
+                    asyncMarshalling="false" />
+            <stateRetrieval
+                    alwaysProvideInMemoryState="true"
+                    fetchInMemoryState="false"
+                    timeout="20000"/>
+
+        </clustering>
+
+    </default>
+</infinispan>

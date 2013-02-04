@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:infinispan:config:5.1 http://www.infinispan.org/schemas/infinispan-config-5.1.xsd"
+        xmlns="urn:infinispan:config:5.1">
+    <global>
+        <globalJmxStatistics
+                enabled="true"
+                jmxDomain="org.infinispan"/>
+
+        <transport
+                clusterName="infinispan-cluster">
+            <properties>
+                <property name="configurationFile" value="jgroups/jgroups-udp-multicast.xml" />
+            </properties>
+        </transport>
+    </global>
+
+    <default>
+
+        <deadlockDetection enabled="true"/>
+
+        <locking
+                isolationLevel="REPEATABLE_READ"
+                concurrencyLevel="500"
+                lockAcquisitionTimeout="10000"
+                writeSkewCheck="true"
+                useLockStriping="false"/>
+
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"/>
+
+        <jmxStatistics enabled="true"/>
+
+        <clustering mode="r">
+            <replicasPolicy mode="PARTIAL_REPLICATION"/>
+        </clustering>
+
+    </default>
+</infinispan>
