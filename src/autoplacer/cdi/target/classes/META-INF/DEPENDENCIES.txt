@@ -1,0 +1,54 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Infinispan CDI support
+
+
+From: 'an unknown organization'
+  - JSR-250 Common Annotations for the JavaTM Platform (http://jcp.org/aboutJava/communityprocess/final/jsr250/index.html) javax.annotation:jsr250-api:jar:1.0
+    License: COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0  (https://glassfish.dev.java.net/public/CDDLv1.0.html)
+  - JSR107 API and SPI (https://github.com/jsr107/jsr107spec) javax.cache:cache-api:jar:0.2.20110727.jboss
+
+  - javax.inject (http://code.google.com/p/atinject/) javax.inject:javax.inject:jar:1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - "Java Concurrency in Practice" book annotations (http://jcip.net/) net.jcip:jcip-annotations:jar:1.0
+
+
+From: 'Apache Software Foundation' (http://www.apache.org)
+  - Apache Log4j (http://logging.apache.org/log4j/1.2/) log4j:log4j:bundle:1.2.16
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'JBoss Inc.' (http://www.jboss.org)
+  - JBoss Transaction 1.0.1 API (http://www.jboss.org) org.jboss.javaee:jboss-transaction-api:jar:1.0.1.GA
+    License: lgpl  (http://repository.jboss.com/licenses/lgpl.txt)
+
+From: 'JBoss, a division of Red Hat' (http://www.jboss.org)
+  - Infinispan Core (http://www.infinispan.org/infinispan-core) org.infinispan:infinispan-core:bundle:5.0.1.FINAL
+    License: GNU Lesser General Public License  (http://www.gnu.org/copyleft/lesser.html)
+  - JGroups (http://www.jgroups.org) org.jgroups:jgroups:bundle:2.12.1.3.Final
+    License: GNU Lesser General Public License 2.1  (http://www.opensource.org/licenses/lgpl-2.1.php)
+
+From: 'JBoss, a division of Red Hat, Inc.' (http://www.jboss.org)
+  - JBoss Logging 3 (http://www.jboss.org) org.jboss.logging:jboss-logging:jar:3.0.0.GA
+    License: lgpl  (http://repository.jboss.org/licenses/lgpl-2.1.txt)
+  - JBoss Marshalling API (http://www.jboss.org/jboss-marshalling-parent/jboss-marshalling) org.jboss.marshalling:jboss-marshalling:jar:1.3.0.GA
+    License: lgpl  (http://repository.jboss.org/licenses/lgpl-2.1.txt)
+  - JBoss Marshalling River (http://www.jboss.org/jboss-marshalling-parent/jboss-marshalling-river) org.jboss.marshalling:jboss-marshalling-river:jar:1.3.0.GA
+    License: lgpl  (http://repository.jboss.org/licenses/lgpl-2.1.txt)
+  - Interceptors 1.1 API (http://jboss-interceptors-api_1.1_spec) org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:jar:1.0.0.Beta1
+    License: lgpl  (http://repository.jboss.org/licenses/lgpl-2.1.txt)
+
+From: 'Red Hat, Inc.' (http://redhat.com/)
+  - RHQ plugin annotations (http://rhq-project.org/rhq-pluginAnnotations) org.rhq.helpers:rhq-pluginAnnotations:jar:3.0.1
+
+
+From: 'Seam Framework' (http://seamframework.org)
+  - CDI APIs (http://www.seamframework.org/Weld) javax.enterprise:cdi-api:jar:1.0-SP4
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.html)
+  - Seam Solder (${project.parent.url}) org.jboss.seam.solder:seam-solder:jar:3.0.0.Final
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.html)
+
+
+

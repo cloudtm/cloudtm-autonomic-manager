@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>radargun-aggregator</artifactId>
+    <version>1.1.1-SNAPSHOT</version>
+    <groupId>org.radargun</groupId>
+    <name>RadarGun - Aggregator</name>
+    <description>The aggregator for RadarGun</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>framework</module>
+        <module>plugins/infinispan52cloudtm</module>
+    </modules>
+
+    <scm>
+        <connection>scm:git:git@github.com:radargun/radargun.git</connection>
+        <url>scm:git:git@github.com:radargun/radargun.git</url>
+        <developerConnection>scm:git:git@github.com:radargun/radargun.git</developerConnection>
+    </scm>
+
+    <properties>
+        <distribution.name>RadarGun-${project.version}</distribution.name>
+        <distribution.artifact>target/distribution/${distribution.name}</distribution.artifact>
+        <distribution.zipfile>target/distribution/${distribution.name}.zip</distribution.zipfile>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <tagBase>https://svn.apache.org/repos/asf/maven/components/releases</tagBase>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.3</version>
+                <executions>
+                    <execution>
+                        <id>prepare_distribution</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <delete dir="target/distribution" />
+                                <mkdir dir="target/distribution" />
+                                <mkdir dir="${distribution.artifact}" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>prepare_plugins</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo message="Packaging the framework, and the following plugins: infinispan52cloudtm" />
+
+                                <copy todir="${distribution.artifact}/plugins/infinispan52cloudtm">
+                                    <fileset dir="plugins/infinispan52cloudtm/target/distribution/plugin-infinispan52cloudtm-bin/plugin-infinispan52cloudtm">
+                                        <include name="**/*" />
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>build_distro</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo message="Packaging the framework, common scripts and building archive" />
+                                <copy todir="${distribution.artifact}">
+                                    <fileset dir="framework/target/distribution/radargun-framework-bin/radargun-framework">
+                                        <include name="**/*" />
+                                    </fileset>
+                                </copy>
+                                <copy todir="${distribution.artifact}/bin">
+                                    <fileset dir="bin">
+                                        <include name="**/*" />
+                                    </fileset>
+                                </copy>
+                                <chmod perm="ugo+rwx" type="file">
+                                    <fileset dir="${distribution.artifact}/bin">
+                                        <include name="**/*.sh" />
+                                        <include name="**/*.py" />
+                                    </fileset>
+                                </chmod>
+                                <zip destfile="${distribution.zipfile}" basedir="target/distribution" excludes="**/bin/**">
+                                    <zipfileset dir="${distribution.artifact}/bin" filemode="755" prefix="${distribution.name}/bin" />
+                                </zip>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
