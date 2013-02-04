@@ -14,7 +14,7 @@ echo $1 >> ${LOG}
 
 workload() {
 log "Change workload to $1"
-${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/bin/changeWorkload.sh $1 `cat ~/radargun/slaves` >> ${LOG} 2>&1
+${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/bin/changeWorkload.sh $1 `cat ${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/slaves` >> ${LOG} 2>&1
 }
 
 block() {
@@ -29,7 +29,7 @@ sleep ${FIRST_SLEEP}
 
 stop() {
 log "Stop benchmark"
-${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/bin/stopBenchmark.sh `cat ~/radargun/slaves` >> ${LOG} 2>&1
+${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/bin/stopBenchmark.sh `cat ${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/slaves` >> ${LOG} 2>&1
 }
 
 w1="-nr-keys 5000 -wrt-tx-percent 50 -rd-op-rd-tx 2:2 -wrt-op-wrt-tx 1:1 -rd-op-wrt-tx 1:1"
@@ -40,7 +40,7 @@ cd $WPM_DIR
 ./run_log_service.sh 
 cd $CURR_DIR
 
-for node in `cat ~/radargun/slaves` 
+for node in `cat ${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/slaves` 
 do
 ssh $node "cd ${WPM_DIR}; ./buildConfig.sh ${node}"
 ssh $node "cd ${WPM_DIR}; ./wpm.sh -start"

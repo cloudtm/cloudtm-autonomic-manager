@@ -37,9 +37,9 @@ echo "copy to ${node}"
 if [ "${MASTER}" == "${node}" ]; then
 echo "not copying... is the master!"
 else
-ssh ${node} mkdir radargun 
+ssh ${node} mkdir -p ${RADARGUN_DIR} 
 scp -r ${RADARGUN_DIR}/* ${node}:${RADARGUN_DIR} > /dev/null
-ssh ${node} mkdir wpm
+ssh ${node} mkdir -p ${WPM_DIR}
 scp -r ${WPM_DIR}/* ${node}:${WPM_DIR} > /dev/null
 fi
 done
