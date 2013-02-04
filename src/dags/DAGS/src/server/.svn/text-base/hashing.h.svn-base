@@ -1,0 +1,9 @@
+#pragma once
+#ifndef _HASHING_H
+#define _HASHING_H
+
+int owner_id(int key, int num_servers, int num_clients);
+int is_owner(int key, int server_id, int num_servers, int num_clients);
+int is_primary(int key, int server_id, int num_servers, int num_clients);
+
+#endif /* _HASHING_H */

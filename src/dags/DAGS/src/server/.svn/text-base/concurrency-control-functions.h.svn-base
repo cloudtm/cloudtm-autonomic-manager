@@ -1,0 +1,15 @@
+#pragma once
+#ifndef _CONCURRENCY_CONTROL_FUNCTIONS_H
+#define _CONCURRENCY_CONTROL_FUNCTIONS_H
+
+#include "../states.h"
+#include "../transaction.h"
+
+int remove_transaction_metadata(int tx_id, SERVER_lp_state_type * pointer);
+transaction_metadata *get_transaction_metadata(int tx_id, SERVER_lp_state_type *pointer);
+int add_transaction_metadata(int tx_id, int local, int tx_run_number, SERVER_lp_state_type * pointer);
+int CC_control(event_content_type * event_content, state_type *state, time_type now);
+void CC_init(state_type * pointer);
+int remove_event_of_tx(CC_event_list * pointer, int txn_id);
+
+#endif /* _CONCURRENCY_CONTROL_FUNCTIONS_H */

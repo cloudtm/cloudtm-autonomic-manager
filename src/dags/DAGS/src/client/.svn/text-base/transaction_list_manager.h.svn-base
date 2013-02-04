@@ -1,0 +1,28 @@
+#pragma once
+#ifndef _TRANSACTIONAL_LIST_MANAGER_H
+#define _TRANSACTIONAL_LIST_MANAGER_H
+
+#include <stdio.h>
+#include "descriptors.h"
+
+double get_tpcc_inter_tx_operation_think_time(int tx_class_id);
+
+// crea una transazione e la accoda
+transaction_descriptor *create_new_transaction(state_type *state, transaction_descriptor ** tx_list, int tx_id, double data_items_zipf_const);
+
+//restituisce la transazione tx_id 
+transaction_descriptor *get_transaction(int tx_id, transaction_descriptor * tx_list);
+
+// rimuove una transazione dalla lista
+void remove_transaction(int tx_id, transaction_descriptor ** tx_list);
+
+// resetta i puntatori current della transazione
+void reset_transaction_state(transaction_descriptor * transaction);
+
+// restituisce l'operazione corrente della transazione e passa alla successiva
+operation_descriptor *get_next_operation(transaction_descriptor * tx_desc);
+
+
+
+
+#endif /* _TRANSACTIONAL_LIST_MANAGER_H */

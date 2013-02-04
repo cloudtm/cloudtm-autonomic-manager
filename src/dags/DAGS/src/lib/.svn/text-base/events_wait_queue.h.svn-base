@@ -1,0 +1,29 @@
+#pragma once
+#ifndef _EVENTS_WAIT_QUEUE_H
+#define _EVENTS_WAIT_QUEUE_H
+
+#include <stdlib.h>
+#include "../configuration.h"
+#include "../application.h"
+
+typedef struct _wait_event {
+	int event_type;
+	event_content_type *event_content;
+	double insertion_time;
+	struct _wait_event *next;
+} wait_event;
+
+typedef struct _event_wait_queue {
+	wait_event *top;
+	wait_event *bottom;
+} event_wait_queue;
+
+/* Funzioni di gestione per la coda di attesa degli eventi*/
+
+void copy_into_wait_queue(int event_type, event_content_type *event_content, time_type now, event_wait_queue *queue);
+void get_from_wait_queue(int *event_type, event_content_type **event_content, event_wait_queue *queue);
+int is_empty(event_wait_queue *queue);
+int get_queue_length(event_wait_queue *queue);
+
+
+#endif /* _EVENTS_WAIT_QUEUE_H */

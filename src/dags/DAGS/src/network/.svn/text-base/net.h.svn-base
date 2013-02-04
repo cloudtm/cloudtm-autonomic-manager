@@ -1,0 +1,10 @@
+#pragma once
+#ifndef _NET_H
+#define _NET_H
+
+#include "../states.h"
+
+void net_send_message(int source, int destination, event_content_type *new_event_content, int num_clients , int num_servers, time_type now);
+
+
+#endif /* _NET_H */

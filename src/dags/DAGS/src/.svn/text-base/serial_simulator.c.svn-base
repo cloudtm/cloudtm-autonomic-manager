@@ -1,0 +1,143 @@
+#include <time.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "application.h"
+#include "configuration.h"
+
+#include "ROOT-Sim.h"
+
+
+#ifdef SERIAL_COMPILE
+void numerical_init(void);
+#endif
+
+
+
+unsigned  int n_prc_tot=NUM_OBJECTS;
+
+void *stato_oggetti[NUM_OBJECTS];
+unsigned int cur_me;
+
+//puntatore ad un evento
+typedef struct _event *event_pointer;
+
+//struttura di un evento
+typedef struct _event {
+	unsigned int receiver; 		//ricevente dell'evento
+	time_type timestamp;   //istante in cui l'evento verr processato
+	int event_type; 	//tipo evento
+	event_content_type *event_content;	//struttura rappresentante il contenuto applicativo dell'evento
+	event_pointer next; //puntatore al prossimo evento in lista
+} event;
+
+//puntatore al primo ed all'ultimo evento in lista
+event *first_event;
+event *last_event;
+
+//funzione di settaggio dei puntatori dell'array degli oggetti di simulazione
+void SetState(void *pointer) {
+	stato_oggetti[cur_me]=pointer;
+}
+
+//funzione per aggiungere un evento alla lista degli eventi
+void add_to_event_list(event *ev){
+	if (first_event==NULL) {
+		first_event=ev;
+		last_event=ev;
+	} else if (ev->timestamp>=last_event->timestamp) {
+		//inserisce l'evento in coda
+		last_event->next=ev;
+		last_event=ev;
+	} else if (ev->timestamp<first_event->timestamp) {
+		//inserisce l'evento in testa
+		ev->next=first_event;
+		first_event=ev;	
+	} else {
+		//scorre la lista
+		event_pointer event_temp=first_event;
+		while(event_temp->next) {
+			if (ev->timestamp <event_temp->next->timestamp) {
+				//inserisce l'evento
+				ev->next=event_temp->next;
+				event_temp->next=ev;
+				return;
+			}
+			event_temp=event_temp->next;
+		}
+		//inserisce l'evento nell'ultima posizione
+		event_temp->next=ev;		
+	}
+	return;
+}
+
+//funzione per il processamento del prossimo evento in lista
+int deliver_next_event() {
+	if (first_event) {
+		event_pointer event_to_deliver=first_event;
+		first_event=event_to_deliver->next;
+		ProcessEvent(event_to_deliver->receiver, event_to_deliver->timestamp, event_to_deliver->event_type, event_to_deliver->event_content,(unsigned int) sizeof(event_to_deliver->event_content) , stato_oggetti[event_to_deliver->receiver]);
+		// elimina l'evento dopo il processamento
+		free(event_to_deliver->event_content);
+		free(event_to_deliver);
+		return 1;
+	}
+	return 0;
+}
+
+
+//funzione per creare un nuovo evento ed inserirlo in lista
+// gid_receiver ricevente evento
+// gid_sender mittente evento
+// timestamp istante di processamento
+// now istante di creazione evento
+// event type tipo di evento
+// event_content punta alle informazioni dell'evento
+
+
+
+void ScheduleNewEvent(unsigned int destination, time_type timestamp, unsigned int event_type, void *event_content, unsigned int size) {
+	
+	event *ev=(event*)malloc(sizeof(event));
+	ev->receiver=destination;
+	ev->event_type=event_type;
+	ev->timestamp=timestamp;
+	if (event_content != NULL ){
+		ev->event_content=(event_content_type*)malloc(size);
+		memcpy(ev->event_content,event_content,size);
+	} else {
+		ev->event_content=NULL;
+	}
+	ev->next=NULL;
+	add_to_event_list(ev);   // aggiunge l'evento alla lista
+}
+
+//funzione main
+int main(int argc, char* argv[]) {
+
+	// TODO: 	lettura del file di configurazione "configuration.txt"
+	//			creazione dell'array arguments
+	
+	
+	// Inizializza la libreria randomica
+	numerical_init();
+	
+	
+
+	printf("SIMULAZIONE IN CORSO...\n");
+
+	int i;
+
+	char *parametri[4] = {"conf-file", "simulation.conf"};
+
+	// invia gli eventi di INIT a tutti gli oggetti di simulazione
+	for(i=0;i<NUM_OBJECTS;i++){
+		// nella seguente riga sostituire NULL con la tabella dei parametri di input
+		cur_me=i;
+		ProcessEvent(i, 0., 0, (void*) &parametri, 2, stato_oggetti[i]);
+	}
+	while(deliver_next_event());
+	printf("\nGLI EVENTI SONO TERMINATI!\n");
+	return 0;
+}
+

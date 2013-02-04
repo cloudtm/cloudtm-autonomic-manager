@@ -1,0 +1,25 @@
+#pragma once
+#ifndef _CONCURRENCY_CONTROL_H
+#define _CONCURRENCY_CONTROL_H
+
+#include "../application.h"
+
+
+typedef struct _CC_event_list *CC_event_list_pointer;
+
+//struttura della coda di eventi per il controllo concorrenza
+typedef struct _CC_event_list {
+	event_content_type * event;
+	CC_event_list_pointer next;
+} CC_event_list;
+
+//struttura che per ogni server contiene i metadati per il controllo di concorrenza
+typedef struct _cc_metadata {
+	transaction_metadata * active_transaction[ACTIVE_TRANSACTION_TABLE_SIZE]; //TODO [added by Fabio] hash table dei write_set per le transizioni (per gesitone concorrenza).
+	CC_event_list *event_queue; //TODO [added by Fabio] Code per gestione concorrenza
+	CC_event_list *event_queue_L1; //TODO [added by Fabio] Code per gestione concorrenza
+	int *locks; //i-esimo record lockato da txn con id locks[i], -1 se libero
+	int lock_retry_num;
+} cc_metadata;
+
+#endif /* _CONCURRENCY_CONTROL_H */

@@ -1,0 +1,6 @@
+set conf-file ../../simulation.conf
+set np 1
+set nprc 11
+set debug
+set incremental
+run datagrid_sim

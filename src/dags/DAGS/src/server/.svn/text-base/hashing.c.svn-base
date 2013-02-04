@@ -1,0 +1,40 @@
+#include "hashing.h"
+
+
+//funzione che data una chiave ed un server ci dice se esso e' proprietario della chiave
+int is_owner(int key, int server_id, int num_servers, int num_clients) {
+
+	int full_replicated = 0;
+	int rep_degree = 1;
+
+	int server_position = server_id - num_clients;
+
+	if (full_replicated)
+		return 1;
+	else if (rep_degree == 1) {
+		if (((key % num_servers) == server_position))
+			return 1;
+		else
+			return 0;
+	} else {
+		int first_server = (key % num_servers);
+		int last_server = (first_server + (rep_degree - 1))% num_servers;
+		if (first_server < last_server)
+			if (first_server <= server_position && server_position <= last_server)
+				return 1;
+			else
+				return 0;
+		else // (first_server<last_server)
+		if (server_position <= first_server || last_server <= server_position)
+			return 1;
+		else
+			return 0;
+	}
+
+}
+
+//PER IL CONTROLLO DI CONCORRENZA DEL PRIMARY_OWNER
+int is_primary(int key, int server_id, int num_servers, int num_clients) {
+	if(((key%num_servers)+num_clients==server_id)) return 1;
+	else return 0;
+}

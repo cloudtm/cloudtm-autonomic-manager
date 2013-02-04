@@ -1,0 +1,27 @@
+ACLOCAL_AMFLAGS = -I m4
+AM_CFLAGS = -Wall -Wextra
+#AM_MAKEFLAGS = -s
+
+EXTRA_DIST =	application.h \
+		client/client.h \
+		client/transaction_list_manager.h \
+		network/net.h \
+		server/concurrency-control.h \
+		server/cpu.h \
+		server/hashing.h \
+		server/server.h	
+
+
+bin_PROGRAMS = datagrid_sim
+
+
+datagrid_sim_SOURCES =	application.c \
+			conf-parser.c \
+			client/client.c \
+			client/transaction_list_manager.c \
+			lib/events_wait_queue.c \
+			network/net.c \
+			server/concurrency-control.c \
+			server/cpu.c \
+			server/hashing.c \
+			server/server.c

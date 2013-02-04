@@ -1,0 +1,34 @@
+#pragma once
+#ifndef _TRANSACTIONS_H
+#define _TRANSACTIONS_H
+
+
+//definisce la grandezza massima dell'hash table che gestisce le transazioni attive
+#define ACTIVE_TRANSACTION_TABLE_SIZE			20
+
+//puntatore all'elemento del write_set o read_set (per costruzione lista).
+typedef struct _data_set_entry *data_set_entry_pointer;
+
+//elemento del write_set o read_set
+typedef struct _data_set_entry {
+	int object_key_id;
+	data_set_entry_pointer next;
+} data_set_entry;
+
+//puntatore al successivo transaction_metadata nel bucket dell'hash table (per collisioni)
+typedef struct _transaction_metadata *transaction_metadata_pointer;
+
+//struttura per la gestione dei transaction_metadata nel cc
+typedef struct _transaction_metadata {
+	int tx_id;
+	int local;
+	int current_tx_run_number;
+	int is_blocked;
+	int expected_response_counter; //questo contatore tiene conto del numero di server remoti che devono ancora preaparare il commit
+	data_set_entry *write_set;
+	data_set_entry *read_set;
+	transaction_metadata_pointer next;
+} transaction_metadata;
+
+
+#endif /* _TRANSACTIONS_H */

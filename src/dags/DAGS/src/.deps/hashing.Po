@@ -1,0 +1,3 @@
+hashing.o: server/hashing.c server/hashing.h
+
+server/hashing.h:
