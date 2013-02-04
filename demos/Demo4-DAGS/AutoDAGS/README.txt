@@ -14,10 +14,9 @@ AutoDAGS -m 1 -M 100000 -f data1.log,data2.log -s 1 -S 2 -c 1 -C 3 -e 100000 -d 
 
 
 Considering the above example usage, files 'data1.log' and 'data2.log' will be parsed, including data whose timestamp is between 1 and 100000. 20 concurrent clients will be started in the simulation, each client will execute 100000 transactions whose data accesses are distributed over a set of 500000 data objects.
-A numer of 6 simulation run will be executed, where, the -----------
 
 Simulation results:
-The simulation results are stored in the file 'output_plot.txt' and are divided on basis of transactional classes. Each line in the output file includes:
+The simulation results are stored in the file 'output.txt' and are divided on basis of transactional classes. Each line in the output file includes:
 
 - number of clients,
 - number of servers,
