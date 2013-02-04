@@ -1,1 +1,6 @@
 .DS_Store
+#ignore Intellij Idea files
+.idea
+*.iml
+*.ipr
+*.iws
