@@ -48,7 +48,7 @@ done
 
 block
 
-${MORPH_DIR}/buildPropertiesFile.sh  1800000  
+${MORPH_DIR}/buildPropertiesFile.sh  1500000  
 ${MORPH_DIR}/run.sh  
 
 block
@@ -83,7 +83,7 @@ block
 
 cp ${MORPH_DIR}/proberesults.txt ${MORPH_DIR}/proberesults-Deliverable.txt  >> ${LOG} 2>&1
 
-for node in `cat ~/radargun/slaves`
+for node in `cat ${HOME}/cloudtm-autonomic-manager/demos/Demo2-MorphR/radargun/slaves`
 do
 ssh $node "cd ${WPM_DIR}; ./wpm.sh -stop"
 done
