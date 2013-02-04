@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="AutonomicManagerActuator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AutonomicManagerActuator_jar</output-path>
+    <root id="archive" name="AutonomicManagerActuator.jar">
+      <element id="module-output" name="AutonomicManagerActuator" />
+    </root>
+  </artifact>
+</component>

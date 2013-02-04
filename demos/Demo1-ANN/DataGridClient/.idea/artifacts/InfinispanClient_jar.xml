@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="InfinispanClient:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InfinispanClient_jar</output-path>
+    <root id="archive" name="InfinispanClient.jar">
+      <element id="module-output" name="InfinispanClient" />
+    </root>
+  </artifact>
+</component>

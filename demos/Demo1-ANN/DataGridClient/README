@@ -1,0 +1,3 @@
+Install jar in local maven repository
+
+mvn install:install-file -Dfile=InfinispanClient.jar -DgroupId=simutools.infinispan.client -DartifactId=infinispan-client -Dversion=1.0.0 -Dpackaging=jar

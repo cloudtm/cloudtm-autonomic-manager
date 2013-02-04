@@ -1,0 +1,31 @@
+<bench-config>
+
+   <master bindAddress="${127.0.0.1:master.address}" port="${2103:master.port}"/>
+
+   <benchmark initSize="4" maxSize="${4:slaves}" increment="1">
+      <DestroyWrapper runOnAllSlaves="true"/>
+      <StartCluster staggerSlaveStartup="true" delayAfterFirstSlaveStarts="5000" delayBetweenStartingSlaves = "500" expectNumSlaves="4"/>
+      <ClusterValidation partialReplication="false"/>
+      
+      <TpccPopulation numWarehouses="1" cLastMask="0" olIdMask="0" cIdMask="0" populateOnOneCache="false" enablePopulate="false"/>
+      
+      
+      <TpccBenchmark numOfThreads="8" perThreadSimulTime="300" arrivalRate="0.0" backoffTime="1.0" thinkTime="1.0" paymentWeight="5.0" orderStatusWeight="70.0"/>
+      
+      <CsvReportGeneration/>
+   </benchmark>
+
+   <products>
+      <infinispan51>
+         <config name="repl-sync.xml"/>
+      </infinispan51>
+   </products>
+
+   <reports>
+      <report name="Replicated">
+         <item product="infinispan51" config="repl-sync.xml"/>
+      </report>
+      <report name="All" includeAll="true"/>
+   </reports>
+
+</bench-config>
