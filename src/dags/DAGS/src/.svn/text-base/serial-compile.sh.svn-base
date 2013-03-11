@@ -1,3 +1,0 @@
-#!/bin/bash
-
-gcc -g -lm -Wall -DSERIAL_COMPILE -I /home/vitali/rootsim/include/ `find . -name "*.c"`
